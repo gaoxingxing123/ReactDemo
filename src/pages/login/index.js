@@ -7,6 +7,9 @@ import { Form, Icon, Input, Button, Checkbox, } from 'antd';
 import 'antd/dist/antd.css';
 import './index.css';
 import {actionCreators} from './store'
+/**
+ * 测试暂存
+ */
 class LoginFrom extends Component {
   handleSubmit = e => {
     e.preventDefault();
