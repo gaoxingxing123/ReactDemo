@@ -3,7 +3,7 @@ import { Layout,Breadcrumb} from 'antd';
 import {Route} from 'react-router-dom';
 import {connect} from 'react-redux'
 import {Content1,Layout1,Breadcrumb1, Hidden, Hiddenall,Footer1}from './style'
-import Dinput from '../../pages/dinput';
+import Enterprise from '../../pages/enterprise';
 import Login from '../../pages/login';
 import Dcollection from '../../pages/dcollection';
 import Riskrate from '../../pages/riskrate';
@@ -27,14 +27,13 @@ class MyContent extends Component{
             return (          
                 <Layout style={login?Layout1:Hidden}>
                     <Breadcrumb style={login?Breadcrumb1:Hiddenall}>
-                    <Breadcrumb.Item>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item>List</Breadcrumb.Item>
-                    <Breadcrumb.Item>App</Breadcrumb.Item>
+                    <Breadcrumb.Item></Breadcrumb.Item>
                     </Breadcrumb>
                      <Content
                       style={login?Content1:loginCss}
                      >   
-                        <Route path='/'exact component={Login} />                                                                                                                                                               <Route path='/dinput'exact component={Dinput}/>                           
+                        <Route path='/'exact component={Login} /> 
+                        <Route path='/enterprise' exact component={Enterprise}/>                                                                                                                                                                                 
                         <Route path='/dcollection' exact component={Dcollection}/>
                         <Route path='/riskrate' exact component={Riskrate}/>
                         <Route path='/pricerate' exact component={Pricerate}/>

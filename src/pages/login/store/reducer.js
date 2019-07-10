@@ -18,7 +18,7 @@ export default (state=defaultState,action)=>{
     }
     if(action.type===constants.CHANGE_LOGOUT){
         sessionStorage.setItem('login',action.value)
-        sessionStorage.setItem('username','')
+        sessionStorage.setItem('username','' )
         console.log(action.value)
         return state.merge({
             login:fromJS(action.value),

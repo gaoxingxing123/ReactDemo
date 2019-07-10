@@ -54,39 +54,48 @@ class Lmenu extends Component {
               title={
                 <span>
                   <Icon type="user" />
-                  <span style={SubMeunFontSize}>subnav 1</span>
+                  <span style={SubMeunFontSize}>客户信息管理模块</span>
                 </span>
               }
              >
-              <Menu.Item style={ChildMeunFontSize} key="1"><Link to={'/dinput'}>dinput</Link></Menu.Item>
-              <Menu.Item style={ChildMeunFontSize} key="2"><Link to={'/dcollection'}>dcollection</Link></Menu.Item>
-              <Menu.Item style={ChildMeunFontSize} key="3">option3</Menu.Item>             
+              <Menu.Item style={ChildMeunFontSize} key="1"><Link to={'/enterprise'}>小微企业信息</Link></Menu.Item>
+              <Menu.Item style={ChildMeunFontSize} key="2"><Link to={'/dcollection'}>个人信息</Link></Menu.Item>             
             </SubMenu>
             <SubMenu
               key="sub2"
               title={
                 <span>
                   <Icon type="laptop" />
-                  <span style={SubMeunFontSize}>subnav 2</span>
+                  <span style={SubMeunFontSize}>贷款信息模块</span>
                 </span>
               }
             >
-              <Menu.Item style={ChildMeunFontSize} key="4">option4</Menu.Item>
-              <Menu.Item style={ChildMeunFontSize} key="5">option5</Menu.Item>
-              <Menu.Item style={ChildMeunFontSize}key="6">option6</Menu.Item>            
+              <Menu.Item style={ChildMeunFontSize} key="3">我的业务</Menu.Item>
+              <Menu.Item style={ChildMeunFontSize} key="4">查询业务</Menu.Item>
+              <Menu.Item style={ChildMeunFontSize}key="5">新增业务</Menu.Item>            
             </SubMenu>
             <SubMenu
               key="sub3"
               title={
                 <span style={SubMeunFontSize}>
                   <Icon type="notification" />
-                  <span>subnav 3</span>
+                  <span>信用评级模块</span>
                 </span>
               }
             >
-              <Menu.Item style={ChildMeunFontSize} key="7">option7</Menu.Item>
-              <Menu.Item style={ChildMeunFontSize} key="8">option8</Menu.Item>
-              <Menu.Item style={ChildMeunFontSize} key="9">option9</Menu.Item>         
+              <Menu.Item style={ChildMeunFontSize} key="6">信用评级</Menu.Item>         
+            </SubMenu>
+            <SubMenu
+              key="sub4"
+              title={
+                <span style={SubMeunFontSize}>
+                  <Icon type="notification" />
+                  <span>人工智能模块</span>
+                </span>
+              }
+            >
+              <Menu.Item style={ChildMeunFontSize} key="7"><Link to={'/facemodule'}>人脸识别</Link></Menu.Item>
+              <Menu.Item style={ChildMeunFontSize} key="8">数据分析</Menu.Item>         
             </SubMenu>
           </Menu>
         </Sider>

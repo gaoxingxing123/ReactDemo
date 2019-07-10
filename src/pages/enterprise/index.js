@@ -2,17 +2,19 @@ import React, { Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom'
 import './style.css'
-import MyTable from './mytable/index'
-import MyTable1 from './mytable1/index'
-class Dinput extends Component{  
+
+import Search from './component/search';
+import MyTable from './component/mytable';
+class Enterprise extends Component{  
     render(){
         const {login}=this.props;
         if(login){
             return (
               <div>
+                <Search/>
+                <div style={{height:30}}></div>
                 <MyTable/>
-                <MyTable1/>      
-              </div>       
+              </div>      
             )
         }else{
             return <Redirect to='/'/>
@@ -22,12 +24,12 @@ class Dinput extends Component{
 }
 const mapState=(state)=>({
     login:state.getIn(['login','login']),
-    data:state.getIn(['dinput','data']),
-    loading:state.getIn(['dinput','loading'])
+    data:state.getIn(['enterprise','data']),
+    loading:state.getIn(['enterprise','loading'])
     
   })
 
 
-export default  connect(mapState,null)(Dinput);
+export default  connect(mapState,null)(Enterprise);
 
 

@@ -68,7 +68,7 @@ class LoginFrom extends Component {
           </LoginBox>
         );
     }else{
-        return <Redirect to='/dinput'/>
+        return <Redirect to='/enterprise'/>
     }
 
   }

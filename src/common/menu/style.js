@@ -1,6 +1,6 @@
 export const SubMeunFontSize={
-    fontSize:'17px'
+    fontSize:'13px'
 }
 export const ChildMeunFontSize={
-    fontSize:'16px'
+    fontSize:'12px'
 }

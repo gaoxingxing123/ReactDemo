@@ -26,7 +26,7 @@ class Head extends Component{
                     </UserInfo>                   
                     <LeftHead>
                         <Logo>LOGO </Logo>  
-                        <Theme >企业信息管理平台</Theme> 
+                        <Theme >CRM大数据中心</Theme> 
                         <Menu
                             theme="dark"
                             mode="horizontal"

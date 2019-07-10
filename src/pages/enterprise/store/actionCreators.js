@@ -20,7 +20,7 @@ export const ListShow=()=>{
             const result=res.data;
                 dispatch(changeList(result))           
         }).catch((error)=>{
-            alert('post失败')
+            alert('查询失败，请检查服务器')
         });
 
     }

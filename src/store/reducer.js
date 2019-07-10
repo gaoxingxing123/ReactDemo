@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux-immutable';
 import  {reducer as loginReducer} from '../pages/login/store'
-import  {reducer as dinputReducer} from '../pages/dinput/store'
+import  {reducer as enterpriseReducer} from '../pages/enterprise/store'
 const reducer= combineReducers({
     login:loginReducer,
-    dinput:dinputReducer
+    enterprise:enterpriseReducer
 })
 export default reducer;
