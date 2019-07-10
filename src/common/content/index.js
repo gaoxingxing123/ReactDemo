@@ -16,7 +16,7 @@ import { loginCss } from '../../pages/login/style';
 import {actionCreators} from '../../pages/login/store'
 class MyContent extends Component{
     /**
-     * 生命周期函数，用于判断session中的登录状态
+     * 生命周期函数，用于判断session中的登录状态11111
      */
     componentWillMount(login,username){
         this.props.TransFormData(login,username)
