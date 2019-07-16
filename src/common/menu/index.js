@@ -59,7 +59,7 @@ class Lmenu extends Component {
               }
              >
               <Menu.Item style={ChildMeunFontSize} key="1"><Link to={'/enterprise'}>小微企业信息</Link></Menu.Item>
-              <Menu.Item style={ChildMeunFontSize} key="2"><Link to={'/dcollection'}>个人信息</Link></Menu.Item>             
+              <Menu.Item style={ChildMeunFontSize} key="2"><Link to={'/individua'}>个人信息</Link></Menu.Item>             
             </SubMenu>
             <SubMenu
               key="sub2"
@@ -70,9 +70,9 @@ class Lmenu extends Component {
                 </span>
               }
             >
-              <Menu.Item style={ChildMeunFontSize} key="3">我的业务</Menu.Item>
-              <Menu.Item style={ChildMeunFontSize} key="4">查询业务</Menu.Item>
-              <Menu.Item style={ChildMeunFontSize}key="5">新增业务</Menu.Item>            
+              <Menu.Item style={ChildMeunFontSize} key="3"><Link to={'/myservice'}>我的业务</Link></Menu.Item>
+              <Menu.Item style={ChildMeunFontSize} key="4"><Link to={'/servicesearch'}>查询业务</Link></Menu.Item>
+              <Menu.Item style={ChildMeunFontSize} key="5"><Link to={'/serviceadd'}>新增业务</Link></Menu.Item>            
             </SubMenu>
             <SubMenu
               key="sub3"

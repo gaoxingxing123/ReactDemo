@@ -3,7 +3,7 @@ import React, { Component} from 'react';
 import {connect} from 'react-redux';
 import { Table, Input, Button, Icon,Spin } from 'antd';
 import Highlighter from 'react-highlight-words';
-import {actionCreators} from '../../store'
+import {actionCreators} from '../../../store'
 class MyTable1 extends Component{  
     constructor(props){
       super(props);

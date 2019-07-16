@@ -1,12 +1,11 @@
 import React, { Component} from 'react';
 import {connect} from 'react-redux';
-import './style.css'
 import {Redirect} from 'react-router-dom'
 import { HashRouter as Router,Route} from'react-router-dom'
 import Home from "./home";
 import Add from "./add"
 import Check from './check';
-class Enterprise extends Component {
+class Individual extends Component {
     render() {
       const {login}=this.props;
         if(login){
@@ -24,13 +23,10 @@ class Enterprise extends Component {
     }
 }
 const mapState=(state)=>({
-    login:state.getIn(['login','login']),
-    data:state.getIn(['enterprise','data']),
-    loading:state.getIn(['enterprise','loading'])
-    
+    login:state.getIn(['login','login']),   
   })
 
 
-export default  connect(mapState,null)(Enterprise);
+export default  connect(mapState,null)(Individual);
 
 

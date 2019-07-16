@@ -1,22 +1,21 @@
 import React, { Component} from 'react';
 import {connect} from 'react-redux';
-import './style.css'
 import {Redirect} from 'react-router-dom'
+import 'antd/dist/antd.css';
 import { HashRouter as Router,Route} from'react-router-dom'
-import Home from "./home";
+import Home from "./home"
 import Add from "./add"
-import Check from './check';
-class Enterprise extends Component {
+class ServiceAdd extends Component {
     render() {
       const {login}=this.props;
         if(login){
                 return (
+                    <div>                  
                     <Router>          
                         <Route path="/" exact component={Home}/>
-                        <Route path="/home" exact component={Home}/>
                         <Route path="/add" exact component={Add}/>
-                        <Route path="/check" exact component={Check}/>
                     </Router>
+                    </div>
                 );
         }else{
           return <Redirect to='/'/>
@@ -24,13 +23,8 @@ class Enterprise extends Component {
     }
 }
 const mapState=(state)=>({
-    login:state.getIn(['login','login']),
-    data:state.getIn(['enterprise','data']),
-    loading:state.getIn(['enterprise','loading'])
-    
+    login:state.getIn(['login','login']),   
   })
 
 
-export default  connect(mapState,null)(Enterprise);
-
-
+export default  connect(mapState,null)(ServiceAdd);

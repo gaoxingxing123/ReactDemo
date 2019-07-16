@@ -1,8 +1,9 @@
 import 'antd/dist/antd.css';
 import React, { Component} from 'react';
 import {connect} from 'react-redux';
-import { Table, Button } from 'antd';
-import { MyTableContent } from '../../style';
+import { Table} from 'antd';
+import { MyTableContent } from '../../../style';
+import {Link} from 'react-router-dom'
 class MyTable extends Component{  
    
   
@@ -29,43 +30,43 @@ class MyTable extends Component{
               title: '用户职务',
               dataIndex: 'userType',
               key: 'userType',
-              width: 150,
+              width: 120,
               
             },
             {
               title: '用户职务',
              
-              width: 150,
+              width: 120,
            
             },
             {
               title: '用户职务',
            
-              width: 150,
+              width: 120,
              
             },
             {
               title: '用户职务',
              
-              width: 150,
+              width: 120,
            
             },
             {
               title: '用户职务',
             
-              width: 150,
+              width: 120,
               
             },
             {
               title: '用户职务',
              
-              width: 150,
+              width: 120,
            
             },
             {
               title: '用户职务',
             
-              width: 150,
+              width: 120,
              
             },
             {
@@ -76,25 +77,30 @@ class MyTable extends Component{
             {
               title: '详情',             
               width: 80,
-              fixed:'right',              
-           
-              render: () => <div >action</div> ,
-            },
+              fixed:'right',            
+              render: (record) =>
+                (
+                   <Link to={'/check'}>查看{record.id}</Link>   //查看页面为同步加载页面                                
+                )
+            }
+            
+              
+            
           ]; 
         
     return (
       <div>
             <MyTableContent>
-                <Table  pagination={false}
+            <Table  pagination={false}
                 bordered  
                 columns={columns} 
                 dataSource={(data).toJS()} 
                 rowKey='id' 
                 size="middle" 
-                scroll={{ x:'130%',y: 240 }} 
+                scroll={{ x:1200,y: '43vh' }} 
                 />           
             </MyTableContent>
-             <Button style={{float:'right'}}>新增</Button> 
+            <Link style={{float:'right'}} to={'/add'}>新增</Link>
        </div>    
             )
           

@@ -5,15 +5,17 @@ import {connect} from 'react-redux'
 import {Content1,Layout1,Breadcrumb1, Hidden, Hiddenall,Footer1}from './style'
 import Enterprise from '../../pages/enterprise';
 import Login from '../../pages/login';
-import Dcollection from '../../pages/dcollection';
 import Riskrate from '../../pages/riskrate';
 import Pricerate from '../../pages/pricerate';
 import Authority from '../../pages/authority';
 import Rolemanager from '../../pages/rolemanager';
 import Facemodule from '../../pages/facemodule';
-import Malearning from '../../pages/malearning';
+import Individual from '../../pages/individua'
+import MyService from '../../pages/myservice'
+import ServiceAdd from '../../pages/serviceadd'
 import { loginCss } from '../../pages/login/style';
 import {actionCreators} from '../../pages/login/store'
+import ServiceSearch from '../../pages/servicesearch';
 class MyContent extends Component{
     /**
      * 生命周期函数，用于判断session中的登录状态11111
@@ -33,14 +35,16 @@ class MyContent extends Component{
                       style={login?Content1:loginCss}
                      >   
                         <Route path='/'exact component={Login} /> 
-                        <Route path='/enterprise' exact component={Enterprise}/>                                                                                                                                                                                 
-                        <Route path='/dcollection' exact component={Dcollection}/>
+                        <Route path='/enterprise' exact component={Enterprise}/>                                                                                                                                                                                                         
                         <Route path='/riskrate' exact component={Riskrate}/>
                         <Route path='/pricerate' exact component={Pricerate}/>
                         <Route path='/authority' exact component={Authority}/>
                         <Route path='/rolemanager' exact component={Rolemanager}/>
                         <Route path='/facemodule' exact component={Facemodule}/>
-                        <Route path='/malearning' exact component={Malearning}/>                                           
+                        <Route path='/individua' exact component={Individual}/>
+                        <Route path='/myservice' exact component={MyService}/>  
+                        <Route path='/serviceadd' exact component={ServiceAdd}/> 
+                        <Route path='/servicesearch' exact component={ServiceSearch}/>                                   
                          </Content>
                          <Footer style={login?Footer1:Hiddenall} > ©2018 智慧海洋</Footer>
                     </Layout> 
