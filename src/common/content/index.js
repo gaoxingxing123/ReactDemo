@@ -45,7 +45,7 @@ class MyContent extends Component{
                         <Route path='/myservice' exact component={MyService}/>  
                         <Route path='/serviceadd' exact component={ServiceAdd}/> 
                         <Route path='/servicesearch' exact component={ServiceSearch}/>                                   
-                         </Content>
+                        </Content>
                          <Footer style={login?Footer1:Hiddenall} > ©2018 智慧海洋</Footer>
                     </Layout> 
     
