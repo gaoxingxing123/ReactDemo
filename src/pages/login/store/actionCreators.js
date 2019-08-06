@@ -19,28 +19,29 @@ export const TransFormData=(login,username)=>{
      
 }
 export const login=(accout,password)=>{
-    //axios.defaults.headers.post['Content-Type']='application/json'
-    //let url='http://localhost:8080/user/login3.do'
-    // axios.post(url, {
-    //    username:accout,
-    //    password:password
-    let url='/api/login.json'
+   // axios.defaults.headers.post['Content-Type']='application/json'
+    let url='http://192.168.3.236:8088/login'
     return(dispatch)=>{
-        axios.get(url).then((res)=>{
-            console.log('Post请求到:');
-            console.log(res);
-            const result=res.data.login;
-            if(result){
+        axios.post(url,{
+            username:accout,
+            password:password
+        }       
+        ).then((res)=>{
+            console.log(res.data.data.userId);
+            const result=res.data;
+           if(result.status===0){
                 dispatch(changeLogin(accout))
             }else{
-                alert('账号或密码错误')
-            }
+                alert(result.msg)
+            }                    
         }).catch((error)=>{
-            alert('post失败')
-            console.log(error);
+            alert(error)
         });
 
-    }
+    }   
+
+
+
 }
 export const logout=()=>({
     type:constants.CHANGE_LOGOUT,
