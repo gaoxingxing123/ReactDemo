@@ -1,9 +1,9 @@
 import React, { Component} from 'react';
-class Pricerate extends Component{
+class Creditrate extends Component{
     render(){
         return (
             <div></div>
         )
     }
 }
-export default Pricerate;
+export default Creditrate;

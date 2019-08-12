@@ -9,7 +9,7 @@ export const Content1={
     background: '#fff',
     padding:'24px 24px 0px 24px' ,
     margin: 0,
-    height: '70vh',
+    height: '80vh',
     overflow:'auto'
 }
 export const Hidden={//登录界面背景图

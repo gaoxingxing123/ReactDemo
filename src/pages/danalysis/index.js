@@ -1,9 +1,9 @@
 import React, { Component} from 'react';
-class Riskrate extends Component{
+class Danalysis extends Component{
     render(){
         return (
             <div></div>
         )
     }
 }
-export default Riskrate;
+export default Danalysis;

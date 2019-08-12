@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import { Menu, Icon, Layout} from 'antd';
 import {connect} from 'react-redux';
 import {SubMeunFontSize,ChildMeunFontSize} from './style'
+import '../../pages/login/store'
 const { SubMenu }  = Menu;
 const {Sider} = Layout;
 class Lmenu extends Component {
@@ -15,8 +16,8 @@ class Lmenu extends Component {
       collapsed: false,
     }
   }
+ 
   onCollapse = collapsed => {
-    console.log(collapsed);
     this.setState({ collapsed });
   };
   changeTheme = value => {
@@ -33,7 +34,8 @@ class Lmenu extends Component {
   };
 
   render() {
-    const {login2}=this.props
+    const {login2,menu2}=this.props
+    console.log(menu2)
     if(login2){
       return (
         <div >
@@ -42,61 +44,34 @@ class Lmenu extends Component {
          style={{background: '#001529',minHeight:'91vh'}}
          collapsible collapsed={this.state.collapsed} 
          onCollapse={this.onCollapse}
-         >                   
+         >  
+                        
             <Menu
               mode="inline"
               defaultSelectedKeys={['1']}
               defaultOpenKeys={['sub1']}
               theme='dark'
             >
-            <SubMenu
-              key="sub1"
-              title={
-                <span>
-                  <Icon type="user" />
-                  <span style={SubMeunFontSize}>客户信息管理模块</span>
-                </span>
-              }
-             >
-              <Menu.Item style={ChildMeunFontSize} key="1"><Link to={'/enterprise'}>小微企业信息</Link></Menu.Item>
-              <Menu.Item style={ChildMeunFontSize} key="2"><Link to={'/individua'}>个人信息</Link></Menu.Item>             
-            </SubMenu>
-            <SubMenu
-              key="sub2"
-              title={
-                <span>
-                  <Icon type="laptop" />
-                  <span style={SubMeunFontSize}>贷款信息模块</span>
-                </span>
-              }
-            >
-              <Menu.Item style={ChildMeunFontSize} key="3"><Link to={'/myservice'}>我的业务</Link></Menu.Item>
-              <Menu.Item style={ChildMeunFontSize} key="4"><Link to={'/servicesearch'}>查询业务</Link></Menu.Item>
-              <Menu.Item style={ChildMeunFontSize} key="5"><Link to={'/serviceadd'}>新增业务</Link></Menu.Item>            
-            </SubMenu>
-            <SubMenu
-              key="sub3"
-              title={
-                <span style={SubMeunFontSize}>
-                  <Icon type="notification" />
-                  <span>信用评级模块</span>
-                </span>
-              }
-            >
-              <Menu.Item style={ChildMeunFontSize} key="6">信用评级</Menu.Item>         
-            </SubMenu>
-            <SubMenu
-              key="sub4"
-              title={
-                <span style={SubMeunFontSize}>
-                  <Icon type="notification" />
-                  <span>人工智能模块</span>
-                </span>
-              }
-            >
-              <Menu.Item style={ChildMeunFontSize} key="7"><Link to={'/facemodule'}>人脸识别</Link></Menu.Item>
-              <Menu.Item style={ChildMeunFontSize} key="8">数据分析</Menu.Item>         
-            </SubMenu>
+               {
+                 Object.values(menu2).map((item)=>
+                <SubMenu
+                key={item.id}
+                title={
+                  <span>
+                    <Icon type="user" />
+                    <span style={SubMeunFontSize}>{item.title}</span>
+                  </span>
+                }
+                > {
+                  item.children.map((it)=>
+                  <Menu.Item style={ChildMeunFontSize} key={it.id}><Link to={it.url}>{it.title}</Link></Menu.Item>    
+                  )
+
+                }
+                   
+                </SubMenu>
+               ) 
+               }  
           </Menu>
         </Sider>
         </div>
@@ -108,6 +83,9 @@ class Lmenu extends Component {
   }
 }
 const mapState=(state)=>({
-  login2:state.getIn(['login','login'])
+  login2:state.getIn(['login','login']),
+  userId:state.getIn(['login','userId']),
+  menu2:state.getIn(['login','menu']),
+  
 })
 export default connect(mapState,null)(Lmenu);
