@@ -15,7 +15,7 @@ class Enterprise extends Component {
                         <Route path="/" exact component={Home}/>
                         <Route path="/home" exact component={Home}/>
                         <Route path="/add" exact component={Add}/>
-                        <Route path="/check" exact component={Check}/>
+                        <Route path="/check/:id" exact component={Check}/>
                     </Router>
                 );
         }else{

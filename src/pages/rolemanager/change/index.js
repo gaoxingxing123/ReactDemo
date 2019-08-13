@@ -32,10 +32,8 @@ class MyChange extends Component {
         const _this=this;    //先存一下this，以防使用箭头函数this会指向我们不希望它所指向的对象。
         axios.get('http://192.168.3.236:8088/treeSysPermission')
         .then(function (res) {
-          _this.setState({
-            
-            treeData:res.data
-          
+          _this.setState({            
+            treeData:res.data        
           });
         })
         .catch(function (error) {
@@ -123,7 +121,8 @@ class MyChange extends Component {
       onChange: this.onChange,
       treeCheckable: true,
       searchPlaceholder: '请选择',
-     
+      defaultExpandAll:true,
+      autoExpandParent: true,
       style: {
         width: 400,
       },
@@ -132,7 +131,7 @@ class MyChange extends Component {
       <div>
       <Input placeholder="角色名" onChange={this.roleNameChange} value={this.state.name} />
       <Input placeholder="角色描述" onChange={this.roledChange} value={this.state.description}/>
-      <TreeSelect {...tProps} />
+      <TreeSelect {...tProps} defaultExpandAll={true}/>
       <Button onClick={()=>{this.ChangeRole()}}>修改</Button>
       </div>)
   }

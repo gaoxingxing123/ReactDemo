@@ -28,7 +28,7 @@ class ServiceMove extends Component{
         return (
           <div>
             <Button type="primary" onClick={this.showModal}>
-              业务提交
+              业务移交
             </Button>
             <Modal
               title="业务移交"
