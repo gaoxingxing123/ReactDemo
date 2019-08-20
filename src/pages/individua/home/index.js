@@ -1,28 +1,227 @@
+import 'antd/dist/antd.css';
 import React, { Component} from 'react';
 import {connect} from 'react-redux';
+import { Button,Input} from 'antd';
+import {actionCreators} from '../store';
+import { MySearch,MyTableContent } from '../style';
+import { Table} from 'antd';
+import {Link} from 'react-router-dom'
+import axios from 'axios'
+class Home  extends Component{  
+    constructor(props){
+        super(props);
+        this.state={
+          data:[],
+          userName:'',
+          //total:10,
+        }
+        //this.getUser = this.getUser.bind(this)
+      }
+      componentDidMount(){
+        let url='http://192.168.3.236:8088/peasantClients'
+        axios.get(url    
+        ).then((res)=>{
+            console.log(res);//打印返回信息
+            this.setState(() =>({           
+              data:[...res.data.list], //根据返回信息配置   
+              }));                 
+        }).catch((error)=>{
+            alert(error)
+        });
+      }
 
-import Search from './component/search';
-import MyTable from './component/mytable';
-class Home extends Component{  
-    render(){    
-            return (
-              <div>
-                <Search/>
-                <div style={{height:30}}></div>
-                <MyTable/>
-              </div>      
-            )
-        }      
-}
-//111111
-const mapState=(state)=>({
-    login:state.getIn(['login','login']),
-    data:state.getIn(['enterprise','data']),
-    loading:state.getIn(['enterprise','loading'])
+
+      
+     userName=(event)=>{
+        console.log(this.state.userName)
+        this.setState({
+          userName:event.target.value
+        })
+      }
+      deleteInfo(id){
+        axios.delete('http://192.168.3.236:8088/peasantClient/'+id)
+        .then((res)=>{ 
+          console.log(res);       
+          if(res.data===1){           
+            alert("删除成功")
+            let url='http://192.168.3.236:8088/peasantClients?limit=1000&page=0'
+            axios.get(url    
+            ).then((res)=>{
+                console.log(res.data.list);
+                this.setState({           
+                  data:res.data.list
+                  }); 
+                  console.log(this.state.data)
+            }).catch((error)=>{
+                alert(error)
+            });
+        }else{
+          alert("删除失败")
+        }   
+        })
+        .catch((error)=>{
+          console.log(error)    
+        })
+      }
+      SearchByName(){
+        let url='http://192.168.3.236:8088/peasantClients?keywords='+this.state.userName+'&limit=1000&page=0'
+        axios.get(url    
+        ).then((res)=>{
+            console.log(res.data.list);
+            this.setState({           
+              data:res.data.list,       
+              });                 
+        }).catch((error)=>{
+            alert(error)
+        });
+        
+      }
+      
+    render(){  
+        const {data}=this.state;
+
+       
+
+ 
+        const columns = [
+          {
+            title: '客户号',
+            dataIndex: 'customerId',
+            key: 'customerId',
+            fixed:'left',
+            width:120,
+
+
+           
+          },
+          {
+            title: '借款人姓名',
+            dataIndex: 'name',
+            key: 'name',
+            fixed:'left',
+            width:120,
+            
+          },
+          {
+            title: '证件类型',
+            dataIndex: 'certificateType',
+            key: 'certificateType',
+            width:110,
+            
+          },
+          {
+            title: '借款人身份证号码',
+            dataIndex: 'borrowerIdNumber',
+            key: 'borrowerIdNumber',
+            width:175,
+         
+          },
+          {
+            title: '手机',
+            dataIndex: 'mobilePhone',
+            key: 'mobilePhone',
+            width:120,
+           
+          },
+          {
+            title: '职业',
+            dataIndex: 'career',
+            key: 'career',
+            width:120,
+         
+          },
+          {
+            title: '学历',
+            dataIndex: 'education',
+            key: 'education',
+            width:120,
+            
+          },
+          {
+            title: '详情',             
+            width: 150,
+            fixed:'right',            
+            render: (record) =>
+              ( <div>
+                <Button ><Link to={'/check/'+record.id}>查询</Link>   </Button>
+                <Button onClick={()=>this.deleteInfo(record.id)} >删除</Button>
+              </div>
+                                             
+              )
+          }
+             ];     
+        return (
+            <div>
+            <MySearch>
+                客户名称：
+                
+                <Input  style={{ width: '15%',marginRight:'15%',marginLeft:'5%' }} placeholder="请输入客户名称" onChange={this.userName} />
+                客户号：
+                <Input  style={{ width: '15%',marginRight:'20%' }} placeholder="请输入客户号" />
+               <Button  onClick={ ()=>this.SearchByName()} icon="search">查询</Button><br/>
+            </MySearch>    
+             <MyTableContent>
+             <Table  pagination={{ 
+                                  //total,
+                                  showQuickJumper:true,
+                                  // current: page.pageNum,
+                                  // pageSize:this.state.pageSize,
+                                   //onShowSizeChange:(current,pageSize) => this.changePagesSize(pageSize,current),
+                                   //onChange:(current) => this.changePage(current),
+                                  // defaultPageSize: this.pageSize,
+                                  // onChange: this.getUser
+                                }}
+                 bordered  
+                 columns={columns} 
+                 dataSource={(data)} 
+                 rowKey='id' 
+                 size="middle" 
+                 scroll={{ x: 1100, y: 250 }}
+                 />          
+             </MyTableContent>
+             <Link style={{float:'right'}} to={'/add'}>新增</Link> 
+             </div>
+            )   
+          
+      }
+
+  //     changePage(current){
+  //       const { dispatch } = this.props;
+  //       const params = {
+  //         pageNum:current,
+  //         pageSize:this.state.pageSize,
+  //       };
+  //       dispatch({
+  //         type:'lutList/fetch',
+  //         payload:params,
+  //       })
+  //     }
+
+  //      // 回调函数,每页显示多少条
+  // changePageSize(pageSize,current){
+ 
+  //   // 将当前改变的每页条数存到state中
+  //   this.setState({
+  //     pageSize: pageSize,
+  //   });
     
-  })
-
-
-export default  connect(mapState,null)(Home);
-
-
+  //   // 向后台请求
+  //   const { dispatch } = this.props;
+  //   const params = {
+  //     pageSize: pageSize,
+  //   };
+  //   dispatch({
+  //     type: 'lutList/fetch',
+  //     payload: params,
+  //   })
+  // }
+     }
+  
+  const mapDispatch=(dispatch)=>{
+    return{
+        ListShow(){
+            dispatch(actionCreators.ListShow())
+        }
+    }
+  }
+  export default  connect(null,mapDispatch)(Home );
