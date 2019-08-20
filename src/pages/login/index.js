@@ -1,7 +1,6 @@
 import React, { Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom'
-import {LoginBox} from './style';
 import {Link} from 'react-router-dom'
 import { Form, Icon, Input, Button, Checkbox, } from 'antd';
 import 'antd/dist/antd.css';
@@ -25,7 +24,11 @@ class LoginFrom extends Component {
     
     if(!login1){
         return (
-            <LoginBox>
+         <div className='login'  >
+            <header className="login-header">
+            <h1 className='login-h1'>古交行CMR大数据中心</h1>
+            </header>
+            <div className='login-box' >
                 <Form onSubmit={this.handleSubmit} className="login-form">
                     <Form.Item>
                     {getFieldDecorator('username', {
@@ -65,7 +68,8 @@ class LoginFrom extends Component {
                     Or <Link to={''}  >立即注册!</Link>
                     </Form.Item>
                 </Form>
-          </LoginBox>
+          </div>
+          </div>
         );
     }else{
         return <Redirect to='/enterprise'/>
