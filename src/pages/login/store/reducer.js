@@ -6,17 +6,21 @@ const defaultState= fromJS({
     login:[],
     username:'',
     userId:'',
-    menu:''
+    menu:'',
+    enterpriseId:'',
+    individuaId:'',
+    token:''
 });
-
 export default (state=defaultState,action)=>{
     if(action.type===constants.CHANGE_LOGIN){
         sessionStorage.setItem('login',action.value)
         sessionStorage.setItem('username',action.username)
+        sessionStorage.setItem('token',action.token)
         return state.merge({
             login:fromJS(action.value),
             username:fromJS(action.username),
             userId:fromJS(action.userId),
+            token:fromJS(action.token)
             })
     }
     if(action.type===constants.CHANGE_MENU){
@@ -44,6 +48,9 @@ export default (state=defaultState,action)=>{
             login:fromJS(action.login),
             username:fromJS(action.username),
             menu:(action.menu),
+            enterpriseId:fromJS(action.enterpriseId),
+            individuaId:fromJS(action.individuaId),
+            token:fromJS(action.token)
             })
     }
     

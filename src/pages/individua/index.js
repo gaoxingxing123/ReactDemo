@@ -5,7 +5,7 @@ import { HashRouter as Router,Route} from'react-router-dom'
 import Home from "./home";
 import Add from "./add"
 import Check from './check';
-class Individual extends Component {
+class Individua extends Component {
     render() {
       const {login}=this.props;
         if(login){
@@ -27,6 +27,6 @@ const mapState=(state)=>({
   })
 
 
-export default  connect(mapState,null)(Individual);
+export default  connect(mapState,null)(Individua);
 
 

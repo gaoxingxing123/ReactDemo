@@ -48,7 +48,6 @@ class MyChange extends Component {
         const _this=this;    //先存一下this，以防使用箭头函数this会指向我们不希望它所指向的对象。
         axios.get('http://192.168.3.236:8088/sysRole/'+this.props.match.params.id)
         .then(function (res) {
-          console.log(res.data)
           _this.setState({           
             name:res.data.name,
             description:res.data.description
@@ -62,8 +61,7 @@ class MyChange extends Component {
         })
 
         axios.get('http://192.168.3.236:8088/sysRolePermission/getPermissionList?roleId='+this.props.match.params.id)
-        .then(function (res) {  
-             console.log(res.data)
+        .then(function (res) {            
              let temp=[]
              res.data.map((item)=>
              temp.push(item.sgPermissionEntity.id)
@@ -123,6 +121,7 @@ class MyChange extends Component {
       searchPlaceholder: '请选择',
       defaultExpandAll:true,
       autoExpandParent: true,
+      expandedKeys:['287'],
       style: {
         width: 400,
       },
@@ -131,7 +130,7 @@ class MyChange extends Component {
       <div>
       <Input placeholder="角色名" onChange={this.roleNameChange} value={this.state.name} />
       <Input placeholder="角色描述" onChange={this.roledChange} value={this.state.description}/>
-      <TreeSelect {...tProps} defaultExpandAll={true}/>
+      <TreeSelect {...tProps} />
       <Button onClick={()=>{this.ChangeRole()}}>修改</Button>
       </div>)
   }

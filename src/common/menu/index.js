@@ -36,12 +36,13 @@ class Lmenu extends Component {
   render() {
     const {login2,menu2}=this.props
     console.log(menu2)
-    if(login2){
+
+    if(login2&&menu2!==null){
       return (
         <div >
          <Sider 
          width={218} 
-         style={{background: '#001529',minHeight:'91vh'}}
+         style={{background: '#001529',minHeight:'94vh'}}
          collapsible collapsed={this.state.collapsed} 
          onCollapse={this.onCollapse}
          >  

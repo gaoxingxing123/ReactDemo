@@ -18,7 +18,7 @@ class PermissionSearch extends Component{
         let url='http://192.168.3.236:8088/sysPermissions?limit=1000&page=0'
         axios.get(url    
         ).then((res)=>{
-            console.log(res);
+            console.log(res.data.data);
             this.setState({           
               data:res.data.data,       
               });                 
@@ -103,10 +103,11 @@ class PermissionSearch extends Component{
              <MySearch>     
                 <Button  icon="add" >  <Link to={'/add'}>新增权限</Link></Button><br/>
              </MySearch> 
-             <Table  pagination={false}
+             <Table  
                 bordered  
                 columns={columns} 
                 dataSource={(data)} 
+                pagination={{ pageSize: 5 }}
                 rowKey='id' 
                 />  
         </div>

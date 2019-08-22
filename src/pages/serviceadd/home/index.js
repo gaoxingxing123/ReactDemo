@@ -1,17 +1,25 @@
-import { Form,  Input, Button,Select,DatePicker} from 'antd';
+import { Form,  Input, Button,Select} from 'antd';
 import React, { Component} from 'react';
-import {Link} from 'react-router-dom'
 import 'antd/dist/antd.css';
 import {FormBox} from '../style.js'
+import {withRouter} from 'react-router-dom'
 class MyHome extends Component {
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
+  state = {
+    data:0
+  };
+  handleProvinceChange = value => {
+    console.log(value)
+    this.setState({
+      data:value
     });
   };
+  changePage(data){
+    if(data==='0'){
+      this.props.history.push('/addibase/'+null)
+    }else{
+      this.props.history.push('/addebase/'+null)
+    }
+  }
 
   render() {
     const { Option } = Select;
@@ -33,20 +41,18 @@ class MyHome extends Component {
           {getFieldDecorator('gender', {
             rules: [],
           })(
-            <Select           
-              onChange={this.handleSelectChange}
+            <Select          
+              style={{ width: 120 }}
+              onChange={this.handleProvinceChange}
             >
-              <Option value="enterprise">小微企业</Option>
-              <Option value="individual">农户</Option>
-            </Select>,
+               <Option value='0'>个人</Option>
+               <Option value='1'>小微企业</Option>
+            </Select>
           )}
         </Form.Item>
-            <Form.Item label="创建时间" hasFeedback >
-              <DatePicker style={{ width: '100%' }} />
-             </Form.Item>
         <Form.Item>           
-          <Button style={{marginLeft:'30%'}}type="primary" htmlType="submit" className="login-form-button">
-            <Link to={'/add'}>创建</Link>
+          <Button onClick={()=>{this.changePage(this.state.data)}} style={{marginLeft:'30%'}}type="primary" htmlType="submit" className="login-form-button">
+          创建
           </Button>        
         </Form.Item>
       </Form>
@@ -56,4 +62,4 @@ class MyHome extends Component {
 }
 
 const Home = Form.create({ name: 'normal_login' })(MyHome)
-export default Home;
+export default ((withRouter) (Home));

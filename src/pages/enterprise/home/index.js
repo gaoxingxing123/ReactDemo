@@ -13,17 +13,22 @@ class Home  extends Component{
         super(props);
         this.state={
           data:[],
-          userName:''
-          
+          userName:'',
+          workbookbin:'',
+          workbookjson:'',
+          pageNumber:1,
+          pageSize:5,
+          total:0
         }
       }
       componentWillMount(){
-        let url='http://192.168.3.236:8088/CorporateInfos?limit=1000&page=0'
+        let url='http://192.168.3.236:8088/CorporateInfos?limit='+this.state.pageSize+'&page='+(this.state.pageNumber)
         axios.get(url    
         ).then((res)=>{
             console.log(res.data.list);
             this.setState({           
-              data:res.data.list,       
+              data:res.data.list, 
+              total:res.data.total      
               });                 
         }).catch((error)=>{
             alert(error)
@@ -72,19 +77,30 @@ class Home  extends Component{
         });
         
       }
-      
-    render(){  
-        const {data}=this.state;
-       
+    onPageChange = (page) => {
+      let url='http://192.168.3.236:8088/CorporateInfos?limit='+this.state.pageSize+'&page='+page
+      axios.get(url    
+      ).then((res)=>{
+          console.log(res.data.list);
+          this.setState({           
+            data:res.data.list,       
+            });                 
+      }).catch((error)=>{
+          alert(error)
+      });
+    }
+  
 
+    render(){  
+        const {data,total,pageSize}=this.state;     
           const uploading = {
             accept:".xls",
-            action: 'http://192.168.3.236:8088/uploadCorporateInfo',      
+            action: 'http://192.168.3.236:8088/uploadPeasantProperty',      
             onChange(info) {
               if (info.file.status !== 'uploading') {
                 console.log(info.file, info.fileList);
               }
-              if (info.file.status === 'done') {
+              if (info.file.reponse === 'success') {
                 message.success(`${info.file.name} file uploaded successfully`);
               } else if (info.file.status === 'error') {
                 message.error(`${info.file.name} file upload failed.`);
@@ -98,15 +114,14 @@ class Home  extends Component{
             dataIndex: 'clientName',
             key: 'id',
             width:250,
-            fixed:'left',
+           
             
           },
           {
             title: '联系方式',
             dataIndex: 'contactInformation',
             key: 'contactInformation',
-            width: 120,
-            fixed:'left'
+            width: 120,        
           },
           {
             title: '行业名',
@@ -176,7 +191,7 @@ class Home  extends Component{
           {
             title: '详情',             
             width: 150,
-            fixed:'right',            
+               
             render: (record) =>
               ( <div>
                 <Button ><Link to={'/check/'+record.id}>查询</Link>   </Button>
@@ -200,7 +215,8 @@ class Home  extends Component{
                <Button  onClick={ ()=>this.SearchByName()} icon="search">查询</Button><br/>
             </MySearch>    
              <MyTableContent>
-             <Table  pagination={false}
+             <Table  
+                  pagination={{ pageSize:pageSize ,total:total,onChange:this.onPageChange}}
                  bordered  
                  columns={columns} 
                  dataSource={(data)} 
@@ -214,7 +230,7 @@ class Home  extends Component{
                 <Button>
                   <Icon type="upload" /> 上传文件
                 </Button>
-              </Upload> 
+              </Upload>             
              </div>
             )   
           

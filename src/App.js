@@ -10,7 +10,7 @@ import Lmenu from './common/menu';
 import MyContent from './common/content';
 class App extends Component {
     
-    render() {
+    render() {     
             return (
                 <Fragment >
                     <GlobalStyle/>
@@ -33,5 +33,5 @@ class App extends Component {
     }
 }
 
-export default App;
+export default  (App);
 

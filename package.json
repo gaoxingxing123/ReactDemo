@@ -6,6 +6,8 @@
     "antd": "^3.19.3",
     "axios": "^0.19.0",
     "immutable": "^4.0.0-rc.12",
+    "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
     "qs": "^6.7.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -23,7 +25,8 @@
     "redux-persist-transform-immutable": "^5.0.0",
     "redux-thunk": "^2.3.0",
     "reqwest": "^2.0.5",
-    "styled-components": "^4.2.1"
+    "styled-components": "^4.2.1",
+    "xlsx": "^0.15.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -11,7 +11,8 @@ class UserSearch extends Component{
         super(props);
         this.state={
           data:[],
-          rolename:''
+          rolename:'',
+          userName:''
         }
       }
       componentWillMount(){
@@ -29,6 +30,25 @@ class UserSearch extends Component{
       checkchange(userId){
         console.log(userId)
       }
+      UserSearch(){  
+        let url='http://192.168.3.236:8088/users?keywords='+this.state.userName+'&limit=0&page=1000'
+        axios.get(url    
+        ).then((res)=>{
+            console.log(res.data.list);
+            this.setState({           
+              data:res.data.list,       
+              });                 
+        }).catch((error)=>{
+            alert(error)
+        });
+      }
+      userName=(event)=>{
+        console.log(this.state.userName)
+        this.setState({
+          userName:event.target.value
+        })
+      }
+      
       deleteUser(userId){
        // this.context.router.push({ pathname : '/add', state : { msg : '' }});  
         axios.delete('http://192.168.3.236:8088/user/'+userId)
@@ -115,10 +135,10 @@ class UserSearch extends Component{
             <div>
                 <MySearch>
                 客户名称：
-                <Input  style={{ width: '15%',marginRight:'15%',marginLeft:'5%' }} placeholder="请输入客户名称" />
+                <Input  style={{ width: '15%',marginRight:'15%',marginLeft:'5%' }} placeholder="请输入客户名称" onChange={this.userName}/>
                 客户号：
                 <Input  style={{ width: '15%',marginRight:'20%' }} placeholder="请输入客户号" />
-                <Button  icon="search">查询用户</Button>
+                <Button  icon="search" onClick={()=>{this.UserSearch()}}>查询用户</Button>
                 <Button  icon="add" >  <Link to={'/add'}>新增用户</Link></Button><br/>
              </MySearch> 
              <Table  pagination={false}
