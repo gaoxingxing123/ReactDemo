@@ -3,7 +3,7 @@ import React, { Component} from 'react';
 import {connect} from 'react-redux';
 import { Table, Input, Button, Icon } from 'antd';
 import Highlighter from 'react-highlight-words';
-import {actionCreators} from '../store'
+import {actionCreators} from '../../store'
 class MyTable extends Component{  
     constructor(props){
       super(props);
@@ -78,21 +78,21 @@ class MyTable extends Component{
               title: '编号',
               dataIndex: 'id',
               key: 'id',
-              width: '20%',
+              width: '10%',
               ...this.getColumnSearchProps('id'),
             },
             {
               title: '工资',
               dataIndex: 'salay',
               key: 'salay',
-              width: '20%',
+              width: '10%',
               ...this.getColumnSearchProps('salay'),
             },
             {
               title: '用户职务',
               dataIndex: 'userType',
               key: 'userType',
-              width: '20%',
+              width: '10%',
               ...this.getColumnSearchProps('userType'),
             },
           ]; 
@@ -100,7 +100,7 @@ class MyTable extends Component{
     return (
             <div>
                 <Button onClick={()=>this.props.ListShow()}>异步查询</Button>
-                <Table  columns={columns} dataSource={(data).toJS()} rowKey='id' size="middle" />           
+                <Table  style={{width:'50%',textAlign:'center'}} columns={columns} dataSource={(data).toJS()} rowKey='id' size="middle" />           
             </div>       
             )
           

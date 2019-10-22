@@ -3,7 +3,7 @@ import React, { Component} from 'react';
 import {connect} from 'react-redux';
 import { Table, Input, Button, Icon,Spin } from 'antd';
 import Highlighter from 'react-highlight-words';
-import {actionCreators} from '../store'
+import {actionCreators} from '../../store'
 
 class MyTable1 extends Component{  
     constructor(props){
@@ -82,21 +82,21 @@ class MyTable1 extends Component{
               title: '编号',
               dataIndex: 'id',
               key: 'id',
-              width: '20%',
+              width: '10%',
               ...this.getColumnSearchProps('id'),
             },
             {
               title: '工资',
               dataIndex: 'salay',
               key: 'salay',
-              width: '20%',
+              width: '10%',
               ...this.getColumnSearchProps('salay'),
             },
             {
               title: '用户职务',
               dataIndex: 'userType',
               key: 'userType',
-              width: '20%',
+              width: '10%',
               ...this.getColumnSearchProps('userType'),
             },
           ]; 
@@ -105,8 +105,8 @@ class MyTable1 extends Component{
         <div>同步加载</div>
         {
             loading?
-            <Table  columns={columns} dataSource={(data).toJS()} rowKey='id' size="middle" />
-            :<Spin size="large" /> 
+            <Table   style={{width:'50%',textAlign:'center'}} columns={columns} dataSource={(data).toJS()} rowKey='id' size="small" />
+            :<Spin size="small" /> 
         }
                 </div>
                                
