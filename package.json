@@ -26,7 +26,7 @@
     "redux-thunk": "^2.3.0",
     "reqwest": "^2.0.5",
     "styled-components": "^4.2.1",
-    "xlsx": "^0.15.0"
+    "xlsx": "^0.17.0"
   },
   "scripts": {
     "start": "react-scripts start",
